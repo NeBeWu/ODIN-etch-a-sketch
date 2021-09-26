@@ -1,0 +1,49 @@
+root {
+  --color1: #d4e09b;
+  --color2: #f6f4d2;
+  --color3: #cbdfbd;
+  --color4: #f19c79;
+  --color5: #a44a3f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 4vw;
+}
+
+/********** Body **********/
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color2);
+  color: var(--color5);
+  font-family: monospace;
+  line-height: 1.5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/********** Main **********/
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/********** Container **********/
+.container {
+  width: 400px;
+  height: 400px;
+  display: grid;
+  place-items: stretch;
+}
+
+.cell {
+    background-color: white;
+}
