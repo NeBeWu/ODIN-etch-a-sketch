@@ -38,8 +38,8 @@ main {
 
 /********** Container **********/
 .container {
-  width: 400px;
-  height: 400px;
+  width: 960px;
+  height: 960px;
   display: grid;
   place-items: stretch;
 }
