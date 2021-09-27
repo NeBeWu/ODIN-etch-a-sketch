@@ -7,5 +7,10 @@ container.style.gridTemplateColumns = `repeat(${numberColumns}, auto)`;
 for (i = 0; i < numberColumns * numberColumns; i++) {
   let cell = document.createElement('div');
   cell.classList.add('cell');
+  cell.addEventListener("mouseover", changeColor)
   container.appendChild(cell);
+}
+
+function changeColor() {
+  this.style.backgroundColor = "black";
 }
