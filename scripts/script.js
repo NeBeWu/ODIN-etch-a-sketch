@@ -1,8 +1,15 @@
-const CONTAINER = document.querySelector('.container');
+let coloringMode = 'fixed';
+let color = 'rgb(0,0,0)';
 
-let coloringMode = 'black';
+const colorInput = document.getElementById('colorInput');
+const fixedButton = document.getElementById('fixedButton');
+const randomButton = document.getElementById('randomButton');
+const incrementButton = document.getElementById('incrementButton');
+const resetButton = document.getElementById('resetButton');
+const container = document.querySelector('.container');
 
-blackButton.onclick = () => (coloringMode = 'black');
+colorInput.onchange = (e) => (color = `${e.target.value}`);
+fixedButton.onclick = () => (coloringMode = 'fixed');
 randomButton.onclick = () => (coloringMode = 'random');
 incrementButton.onclick = () => (coloringMode = 'increment');
 resetButton.onclick = () => resetGrid();
@@ -10,14 +17,14 @@ resetButton.onclick = () => resetGrid();
 createGrid(16);
 
 function createGrid(numberColumns) {
-  CONTAINER.style.gridTemplateColumns = `repeat(${numberColumns}, auto)`;
+  container.style.gridTemplateColumns = `repeat(${numberColumns}, auto)`;
 
   for (i = 0; i < numberColumns * numberColumns; i++) {
     let cell = document.createElement('div');
     cell.classList.add('cell');
     cell.style.backgroundColor = 'rgb(255,255,255)';
     cell.addEventListener('mouseover', (e) => changeColor(e));
-    CONTAINER.appendChild(cell);
+    container.appendChild(cell);
   }
 }
 
@@ -38,8 +45,8 @@ function getGridSize() {
 }
 
 function clearGrid() {
-  while (CONTAINER.firstChild) {
-    CONTAINER.removeChild(CONTAINER.lastChild);
+  while (container.firstChild) {
+    container.removeChild(container.lastChild);
   }
 }
 
@@ -50,8 +57,8 @@ function resetGrid() {
 }
 
 function changeColor(e) {
-  if (coloringMode == 'black') {
-    e.target.style.backgroundColor = 'rgb(0,0,0)';
+  if (coloringMode == 'fixed') {
+    e.target.style.backgroundColor = color;
   } else if (coloringMode == 'random') {
     const randomRed = Math.floor(Math.random() * 256);
     const randomGreen = Math.floor(Math.random() * 256);
