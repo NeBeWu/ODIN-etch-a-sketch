@@ -4,6 +4,7 @@ let coloringMode = 'black';
 
 blackButton.onclick = () => (coloringMode = 'black');
 randomButton.onclick = () => (coloringMode = 'random');
+incrementButton.onclick = () => (coloringMode = 'increment');
 resetButton.onclick = () => resetGrid();
 
 createGrid(16);
@@ -14,6 +15,7 @@ function createGrid(numberColumns) {
   for (i = 0; i < numberColumns * numberColumns; i++) {
     let cell = document.createElement('div');
     cell.classList.add('cell');
+    cell.style.backgroundColor = 'rgb(255,255,255)';
     cell.addEventListener('mouseover', (e) => changeColor(e));
     CONTAINER.appendChild(cell);
   }
@@ -49,11 +51,19 @@ function resetGrid() {
 
 function changeColor(e) {
   if (coloringMode == 'black') {
-    e.target.style.backgroundColor = 'black';
+    e.target.style.backgroundColor = 'rgb(0,0,0)';
   } else if (coloringMode == 'random') {
     const randomRed = Math.floor(Math.random() * 256);
     const randomGreen = Math.floor(Math.random() * 256);
     const randomBlue = Math.floor(Math.random() * 256);
     e.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+  } else if (coloringMode == 'increment') {
+    let color = e.target.style.backgroundColor.match(/\d+/g);
+    color = [
+      parseInt(color[0], 10) - 25,
+      parseInt(color[1], 10) - 25,
+      parseInt(color[2], 10) - 25,
+    ];
+    e.target.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
   }
 }
