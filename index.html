@@ -9,12 +9,14 @@
   </head>
   <body>
     <main>
-      <input id="colorInput" type="color">
+      <input id="colorInput" type="color" name="colorInput" value="#000000">
       <button id="fixedButton">Fixed Color</button>
       <button id="randomButton">Random Color</button>
       <button id="incrementButton">Increment Darkness</button>
       <div class="container"></div>
-      <button id="resetButton">Clear</button>
+      <div id="sizePanel">16x16</div>
+      <input id="sizeInput" type="range" name="sizeInput" min="1" max="100" value="16">
+      <button id="clearButton">Clear</button>
     </main>
   </body>
 </html>

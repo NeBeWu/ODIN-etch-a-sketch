@@ -1,61 +1,56 @@
+/* Define main global variables and set their default values */
+let size = 16;
 let coloringMode = 'fixed';
 let color = 'rgb(0,0,0)';
 
+/* Assign constant global variable to each html object */
 const colorInput = document.getElementById('colorInput');
 const fixedButton = document.getElementById('fixedButton');
 const randomButton = document.getElementById('randomButton');
 const incrementButton = document.getElementById('incrementButton');
-const resetButton = document.getElementById('resetButton');
+const sizePanel = document.getElementById('sizePanel');
+const sizeInput = document.getElementById('sizeInput');
+const clearButton = document.getElementById('clearButton');
 const container = document.querySelector('.container');
 
+/* Set how each html object respond to change */
 colorInput.onchange = (e) => (color = `${e.target.value}`);
 fixedButton.onclick = () => (coloringMode = 'fixed');
 randomButton.onclick = () => (coloringMode = 'random');
 incrementButton.onclick = () => (coloringMode = 'increment');
-resetButton.onclick = () => resetGrid();
+sizeInput.onchange = (e) => {
+  size = e.target.value;
+  sizePanel.textContent = `${size}x${size}`;
+  clearGrid();
+};
+clearButton.onclick = () => clearGrid();
 
+/* Initial grid */
 createGrid(16);
 
-function createGrid(numberColumns) {
-  container.style.gridTemplateColumns = `repeat(${numberColumns}, auto)`;
+/* Create a square grid and assign to each cell a white background
+and an event listener */
+function createGrid(size) {
+  container.style.gridTemplateColumns = `repeat(${size}, auto)`;
+  container.style.gridTemplateRows = `repeat(${size}, auto)`;
 
-  for (i = 0; i < numberColumns * numberColumns; i++) {
+  for (i = 0; i < size * size; i++) {
     let cell = document.createElement('div');
-    cell.classList.add('cell');
     cell.style.backgroundColor = 'rgb(255,255,255)';
     cell.addEventListener('mouseover', (e) => changeColor(e));
     container.appendChild(cell);
   }
 }
 
-function getGridSize() {
-  let answer = prompt(
-    'Please enter the number of rows/columns (min=1, max=100)',
-    16
-  );
-
-  numberColumns = Number(answer);
-
-  while (isNaN(numberColumns) || numberColumns < 1 || numberColumns > 100) {
-    answer = prompt('Please enter the number of rows/columns', 16);
-    numberColumns = Number(answer);
-  }
-
-  return numberColumns;
-}
-
+/* Remove all cells and then create new ones according to size */
 function clearGrid() {
   while (container.firstChild) {
     container.removeChild(container.lastChild);
   }
+  createGrid(size);
 }
 
-function resetGrid() {
-  clearGrid();
-  let numberColumns = getGridSize();
-  createGrid(numberColumns);
-}
-
+/* Change cell color according to coloring mode */
 function changeColor(e) {
   if (coloringMode == 'fixed') {
     e.target.style.backgroundColor = color;
