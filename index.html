@@ -6,17 +6,41 @@
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="styles/style.css" />
     <script src="scripts/script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/a359168c40.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
+    <header>
+      <h1>Etch-a-Sketch in the Net</h1>
+    </header>
     <main>
-      <input id="colorInput" type="color" name="colorInput" value="#000000">
-      <button id="fixedButton">Fixed Color</button>
-      <button id="randomButton">Random Color</button>
-      <button id="incrementButton">Increment Darkness</button>
+      <div id="topButtons">
+        <input id="colorInput" type="color" name="colorInput" value="#000000" />
+        <button id="fixedButton">Fixed</button>
+        <button id="randomButton">Random</button>
+        <button id="shadeButton">Shade</button>
+      </div>
       <div class="container"></div>
-      <div id="sizePanel">16x16</div>
-      <input id="sizeInput" type="range" name="sizeInput" min="1" max="100" value="16">
-      <button id="clearButton">Clear</button>
+      <div id="botButtons">
+        <div id="sizePanel">16x16</div>
+        <input
+          id="sizeInput"
+          type="range"
+          name="sizeInput"
+          min="1"
+          max="100"
+          value="16"
+        />
+        <button id="clearButton">Clear</button>
+      </div>
     </main>
+    <footer>
+      <p>NeBeWu</p>
+      <a href="https://github.com/nebewu" target="_blank">
+        <i class="fab fa-github"></i
+      ></a>
+    </footer>
   </body>
 </html>

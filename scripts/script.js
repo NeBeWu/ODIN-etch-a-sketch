@@ -7,7 +7,7 @@ let color = 'rgb(0,0,0)';
 const colorInput = document.getElementById('colorInput');
 const fixedButton = document.getElementById('fixedButton');
 const randomButton = document.getElementById('randomButton');
-const incrementButton = document.getElementById('incrementButton');
+const shadeButton = document.getElementById('shadeButton');
 const sizePanel = document.getElementById('sizePanel');
 const sizeInput = document.getElementById('sizeInput');
 const clearButton = document.getElementById('clearButton');
@@ -15,9 +15,24 @@ const container = document.querySelector('.container');
 
 /* Set how each html object respond to change */
 colorInput.onchange = (e) => (color = `${e.target.value}`);
-fixedButton.onclick = () => (coloringMode = 'fixed');
-randomButton.onclick = () => (coloringMode = 'random');
-incrementButton.onclick = () => (coloringMode = 'increment');
+fixedButton.onclick = () => {
+  coloringMode = 'fixed';
+  fixedButton.classList.add('active');
+  randomButton.classList.remove('active');
+  shadeButton.classList.remove('active');
+};
+randomButton.onclick = () => {
+  coloringMode = 'random';
+  fixedButton.classList.remove('active');
+  randomButton.classList.add('active');
+  shadeButton.classList.remove('active');
+};
+shadeButton.onclick = () => {
+  coloringMode = 'shade';
+  fixedButton.classList.remove('active');
+  randomButton.classList.remove('active');
+  shadeButton.classList.add('active');
+};
 sizeInput.onchange = (e) => {
   size = e.target.value;
   sizePanel.textContent = `${size}x${size}`;
@@ -59,7 +74,7 @@ function changeColor(e) {
     const randomGreen = Math.floor(Math.random() * 256);
     const randomBlue = Math.floor(Math.random() * 256);
     e.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
-  } else if (coloringMode == 'increment') {
+  } else if (coloringMode == 'shade') {
     let color = e.target.style.backgroundColor.match(/\d+/g);
     color = [
       parseInt(color[0], 10) - 25,
